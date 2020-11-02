@@ -1,17 +1,14 @@
 <template>
   <div>
     <van-button type="primary">主要按钮</van-button>
-    <comp-one></comp-one>
+    <div class="text-gray-300">
+      Tailwind css
+    </div>
   </div>
 </template>
 
 <script>
-import CompOne from '../components/CompOne'
-export default {
-  components: {
-    CompOne,
-  },
-}
+export default {}
 </script>
 
 <style lang="scss" scoped></style>
