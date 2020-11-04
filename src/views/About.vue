@@ -4,11 +4,21 @@
     <div class="text-gray-300">
       Tailwind css
     </div>
+    <div class="flex justify-between">
+      <span>left</span>
+      <span>center</span>
+      <span>right</span>
+    </div>
   </div>
 </template>
 
 <script>
-export default {}
+import { Button } from 'vant'
+export default {
+  components: {
+    'van-button': Button,
+  },
+}
 </script>
 
 <style lang="scss" scoped></style>
