@@ -6,7 +6,6 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "demo": "echo \"Hello $npm_config_first $npm_config_last\"",
     "create-template": "node create-template.js"
   },
   "dependencies": {
