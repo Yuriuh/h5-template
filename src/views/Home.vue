@@ -4,7 +4,6 @@
 
 <script>
 // @ is an alias to /src
-// import { getTodos } from '@/services/index.js'
 import { getTodos } from '@/services/todo-service.js'
 export default {
   name: 'Home',
