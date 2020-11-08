@@ -3,8 +3,8 @@ const pxtorem = require('postcss-pxtorem')
 const tailwindcss = require('tailwindcss')
 const path = require('path')
 
-const resolve = path => {
-  return path.resolve(__dirname, path)
+const resolve = dir => {
+  return path.resolve(__dirname, dir)
 }
 
 module.exports = {
