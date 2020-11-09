@@ -5,6 +5,6 @@ export const getTodos = async (params = {}) => {
   try {
     return await axios.get(endpoint, { params })
   } catch (error) {
-    return console.error(error)
+    return Promise.reject(error)
   }
 }
