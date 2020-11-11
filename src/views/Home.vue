@@ -1,5 +1,7 @@
 <template>
-  <div class="home"></div>
+  <div class="home">
+    <van-button>Click</van-button>
+  </div>
 </template>
 
 <script>

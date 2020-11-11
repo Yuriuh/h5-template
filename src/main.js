@@ -4,6 +4,9 @@ import router from './router'
 import store from './store'
 import 'amfe-flexible'
 import './styles/index.scss'
+import { registerComponents } from './utils/register-components'
+
+registerComponents(Vue)
 
 Vue.config.productionTip = false
 
