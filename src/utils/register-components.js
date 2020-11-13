@@ -1,7 +1,9 @@
-import { Button } from 'vant'
+import { Button, Swipe, SwipeItem } from 'vant'
 
 const registerVenderComponents = Vue => {
   Vue.use(Button)
+  Vue.use(Swipe)
+  Vue.use(SwipeItem)
 }
 
 const customComponents = []

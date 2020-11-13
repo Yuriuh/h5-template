@@ -9,22 +9,15 @@
       <span>center</span>
       <span>right</span>
     </div>
-    <!-- <div class="p-1">
-      <fetch-data
-        :url="url"
-        :toastLoading="true"
-        message="loading..."
-        #default="{ data }"
-      >
-        <div>
-          <div>{{ data }}</div>
-        </div>
-      </fetch-data>
-    </div> -->
 
-    <div class="flex px-1">
-      <div id="mse"></div>
-    </div>
+    <van-swipe class="my-swipe" indicator-color="white">
+      <van-swipe-item>
+        <div id="mse"></div>
+      </van-swipe-item>
+      <van-swipe-item>2</van-swipe-item>
+      <van-swipe-item>3</van-swipe-item>
+      <van-swipe-item>4</van-swipe-item>
+    </van-swipe>
   </div>
 </template>
 
@@ -51,23 +44,26 @@ export default {
       fluid: true,
       autoplay: true,
       loop: true,
-      fitVideoSize: 'auto',
       ignores: ['time', 'progress'],
+      height: 240,
+      muted: true,
+      closeVideoPreventDefault: true,
+      closeVideoStopPropagation: true,
+      closeVideoClick: true,
+      closeVideoTouch: true,
     })
   },
 }
 </script>
 
 <style lang="scss">
-#mse {
-  flex: auto;
-  border-radius: 12px;
-  > video {
-    border-radius: 12px;
-  }
-  > .xgplayer-controls {
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-  }
+.my-swipe .van-swipe-item {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 20px;
+  height: 150px;
+  text-align: center;
+  background: #000;
 }
 </style>
