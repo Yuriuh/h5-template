@@ -4,6 +4,7 @@
 
 <script>
 // 引入 EventBus
+import EventBus from '../utils/event-bus.js'
 export default {
   props: {
     id: {
@@ -29,8 +30,24 @@ export default {
       closeVideoTouch: true,
     })
     // 监听事件
+    EventBus.$on('playCurrentVideo', this.playCurrentVideo)
   },
-  methods: {},
+  beforeDestroy() {
+    EventBus.$off('playCurrentVideo', this.playCurrentVideo)
+    this.closeVideo()
+  },
+  methods: {
+    closeVideo() {},
+    playVideo() {},
+    stopVideo() {},
+    playCurrentVideo(id) {
+      if (this.id === id) {
+        this.playVideo()
+      } else {
+        this.stopVideo()
+      }
+    },
+  },
 }
 </script>
 
