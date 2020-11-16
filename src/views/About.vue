@@ -10,60 +10,49 @@
       <span>right</span>
     </div>
 
-    <van-swipe class="my-swipe" indicator-color="white">
-      <van-swipe-item>
-        <div id="mse"></div>
+    <van-swipe
+      class="my-swipe"
+      indicator-color="white"
+      @change="handleSwipeChange"
+    >
+      <van-swipe-item v-for="(item, index) in list" :key="index">
+        <video-player :url="item.url" :id="'video' + index" />
       </van-swipe-item>
-      <van-swipe-item>2</van-swipe-item>
-      <van-swipe-item>3</van-swipe-item>
-      <van-swipe-item>4</van-swipe-item>
     </van-swipe>
   </div>
 </template>
 
 <script>
 import { Button, Toast } from 'vant'
-// import FetchData from '@/components/FetchData'
-import Player from 'xgplayer'
 import video from '../assets/test.mp4'
+import video2 from '../assets/test2.mp4'
+import VideoPlayer from '../components/VideoPlayer'
+import EventBus from '../utils/event-bus'
 export default {
   components: {
     [Button.name]: Button,
-    // FetchData,
+    VideoPlayer,
   },
   data() {
     return {
       Toast,
-      url: 'https://jsonplaceholder.typicode.com/posts/1',
+      video,
+      video2,
+      list: [{ url: video }, { url: video2 }],
     }
   },
   mounted() {
-    let player = new Player({
-      id: 'mse',
-      url: video,
-      fluid: true,
-      autoplay: true,
-      loop: true,
-      ignores: ['time', 'progress'],
-      height: 240,
-      muted: true,
-      closeVideoPreventDefault: true,
-      closeVideoStopPropagation: true,
-      closeVideoClick: true,
-      closeVideoTouch: true,
+    this.$nextTick(() => {
+      EventBus.$emit('playCurrentVideo', 'video1')
     })
+  },
+  methods: {
+    handleSwipeChange(index) {
+      const id = 'video' + index
+      EventBus.$emit('playCurrentVideo', id)
+    },
   },
 }
 </script>
 
-<style lang="scss">
-.my-swipe .van-swipe-item {
-  display: flex;
-  align-items: center;
-  color: #fff;
-  font-size: 20px;
-  height: 150px;
-  text-align: center;
-  background: #000;
-}
-</style>
+<style lang="scss"></style>

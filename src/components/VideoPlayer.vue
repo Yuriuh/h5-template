@@ -3,7 +3,7 @@
 </template>
 
 <script>
-// 引入 EventBus
+import Player from 'xgplayer'
 import EventBus from '../utils/event-bus.js'
 export default {
   props: {
@@ -14,39 +14,48 @@ export default {
       type: String,
     },
   },
+  data() {
+    return {
+      player: {},
+    }
+  },
   mounted() {
-    let player = new Player({
+    this.player = new Player({
       id: this.id,
       url: this.url,
       fluid: true,
       autoplay: true,
       loop: true,
-      ignores: ['time', 'progress'],
+      ignores: ['progress'],
       height: 240,
       muted: true,
-      closeVideoPreventDefault: true,
+      // closeVideoPreventDefault: true,
       closeVideoStopPropagation: true,
-      closeVideoClick: true,
+      // closeVideoClick: true,
       closeVideoTouch: true,
     })
     // 监听事件
     EventBus.$on('playCurrentVideo', this.playCurrentVideo)
   },
-  beforeDestroy() {
-    EventBus.$off('playCurrentVideo', this.playCurrentVideo)
-    this.closeVideo()
-  },
+  // beforeDestroy() {
+  //   EventBus.$off('playCurrentVideo', this.playCurrentVideo)
+  //   this.destroyVideo()
+  // },
   methods: {
-    closeVideo() {},
-    playVideo() {},
-    stopVideo() {},
+    playVideo() {
+      this.player.play()
+    },
+    pauseVideo() {
+      this.player.pause()
+    },
     playCurrentVideo(id) {
       if (this.id === id) {
         this.playVideo()
       } else {
-        this.stopVideo()
+        this.pauseVideo()
       }
     },
+    destroyVideo() {},
   },
 }
 </script>
