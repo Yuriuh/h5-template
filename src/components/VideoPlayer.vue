@@ -1,5 +1,5 @@
 <template>
-  <div :id="id"></div>
+  <div :id="id" @click="handleClick"></div>
 </template>
 
 <script>
@@ -29,9 +29,9 @@ export default {
       ignores: ['progress'],
       height: 240,
       muted: true,
-      // closeVideoPreventDefault: true,
+      closeVideoPreventDefault: true,
       closeVideoStopPropagation: true,
-      // closeVideoClick: true,
+      closeVideoClick: true,
       closeVideoTouch: true,
     })
     // 监听事件
@@ -56,6 +56,9 @@ export default {
       }
     },
     destroyVideo() {},
+    handleClick() {
+      console.log('video clicked')
+    },
   },
 }
 </script>
