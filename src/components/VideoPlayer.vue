@@ -37,10 +37,10 @@ export default {
     // 监听事件
     EventBus.$on('playCurrentVideo', this.playCurrentVideo)
   },
-  // beforeDestroy() {
-  //   EventBus.$off('playCurrentVideo', this.playCurrentVideo)
-  //   this.destroyVideo()
-  // },
+  beforeDestroy() {
+    EventBus.$off('playCurrentVideo', this.playCurrentVideo)
+    this.destroyVideo()
+  },
   methods: {
     playVideo() {
       this.player.play()
@@ -55,7 +55,9 @@ export default {
         this.pauseVideo()
       }
     },
-    destroyVideo() {},
+    destroyVideo() {
+      this.player && this.player.destroy && this.player.destroy()
+    },
     handleClick() {
       console.log('video clicked')
     },
