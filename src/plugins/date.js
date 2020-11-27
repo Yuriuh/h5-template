@@ -1,9 +1,15 @@
 import dayjs from 'dayjs'
+import localizedFormat from 'dayjs/plugin/localizedFormat'
 import 'dayjs/locale/zh-cn'
 
-dayjs.locale('zh-cn') // 全局使用简体中文
+dayjs.locale('zh-cn')
+dayjs.extend(localizedFormat)
 
 const InvalidReturn = ''
+
+/**
+ * eg1: <span>{{ xxDate | dateFormat('YYYY/MM/DD') }}</span>
+ */
 
 export default {
   install(Vue) {
