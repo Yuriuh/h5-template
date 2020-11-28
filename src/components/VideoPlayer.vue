@@ -1,68 +1,57 @@
 <template>
-  <div :id="id" @click="handleClick"></div>
+    <div :id="id"></div>
 </template>
 
 <script>
-import Player from 'xgplayer'
-import EventBus from '../utils/event-bus.js'
+import Player from 'xgplayer';
 export default {
-  props: {
-    id: {
-      type: String,
+    props: {
+        id: {
+            type: String,
+        },
+        url: {
+            type: String,
+        },
+        poster: {
+            type: String,
+        },
     },
-    url: {
-      type: String,
+    data() {
+        return {
+            player: {},
+        };
     },
-  },
-  data() {
-    return {
-      player: {},
-    }
-  },
-  mounted() {
-    this.player = new Player({
-      id: this.id,
-      url: this.url,
-      fluid: true,
-      autoplay: true,
-      loop: true,
-      ignores: ['progress'],
-      height: 240,
-      muted: true,
-      closeVideoPreventDefault: true,
-      closeVideoStopPropagation: true,
-      closeVideoClick: true,
-      closeVideoTouch: true,
-    })
-    // 监听事件
-    EventBus.$on('playCurrentVideo', this.playCurrentVideo)
-  },
-  beforeDestroy() {
-    EventBus.$off('playCurrentVideo', this.playCurrentVideo)
-    this.destroyVideo()
-  },
-  methods: {
-    playVideo() {
-      this.player.play()
+    mounted() {
+        this.player = new Player({
+            id: this.id,
+            url: this.url,
+            poster: this.poster,
+            autoplay: true,
+            playsinline: true,
+            loop: true,
+            fluid: true,
+            // height: 262,
+            muted: true,
+            // closeVideoPreventDefault: true,
+            // closeVideoStopPropagation: true,
+            // closeVideoClick: true,
+            // closeVideoTouch: true,
+            // inactive: 3000,
+        });
     },
-    pauseVideo() {
-      this.player.pause()
+    beforeDestroy() {
+        this.destroyVideo();
     },
-    playCurrentVideo(id) {
-      if (this.id === id) {
-        this.playVideo()
-      } else {
-        this.pauseVideo()
-      }
+    methods: {
+        playVideo() {
+            this.player.play();
+        },
+        pauseVideo() {
+            this.player.pause();
+        },
+        destroyVideo() {
+            this.player && typeof this.player.destroy === 'function' && this.player.destroy();
+        },
     },
-    destroyVideo() {
-      this.player && this.player.destroy && this.player.destroy()
-    },
-    handleClick() {
-      console.log('video clicked')
-    },
-  },
-}
+};
 </script>
-
-<style lang="scss" scoped></style>

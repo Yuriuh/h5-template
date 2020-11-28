@@ -1,29 +1,47 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <van-tabs @change="switchRouter" v-model="active">
+      <van-tab
+        v-for="route in routes"
+        :key="route.name"
+        :name="route.name"
+        :title="route.name"
+      >
+      </van-tab>
+    </van-tabs>
     <router-view />
   </div>
 </template>
 
+<script>
+import { routes } from './router'
+export default {
+  data() {
+    return {
+      routes,
+      active: '',
+    }
+  },
+  watch: {
+    '$route.path': {
+      handler() {
+        const currentRoute = this.$route
+        this.active = currentRoute.name
+      },
+      immediate: true,
+    },
+  },
+  methods: {
+    switchRouter(name, title) {
+      this.$router.push({ name: title })
+    },
+  },
+}
+</script>
+
 <style lang="scss">
 #app {
   font-size: 16px;
-  text-align: center;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  background: #f7f8fa;
 }
 </style>

@@ -27,3 +27,14 @@ axios.interceptors.response.use(
     return Promise.reject(error)
   }
 )
+
+export const post = async (url, payload = {}) => {
+  const headers = { 'Content-Type': 'application/json' }
+  try {
+    const data = await axios.post(url, payload, { headers })
+    return { ok: true, data, error: null }
+  } catch (error) {
+    const errorResponse = error.response
+    return { ok: false, data: null, error: errorResponse }
+  }
+}

@@ -1,58 +1,51 @@
-import { axios } from '@/utils/request'
-import { Toast } from 'vant'
+import { post } from '../utils/request';
+import { Toast } from 'vant';
 
 export default {
-  name: 'FetchData',
-  props: {
-    url: {
-      type: String,
-      default: 'https://jsonplaceholder.typicode.com/todos/1',
+    name: 'FetchData',
+    props: {
+        url: {
+            type: String,
+            default: ''
+        },
+        toastLoading: {
+            type: Boolean,
+            default: false
+        },
+        message: {
+            type: String,
+            default: ''
+        }
     },
-    toastLoading: {
-      type: Boolean,
-      default: false,
+    async created() {
+        this.toastLoading && this.startLoading();
+        this.data = await this.fetchData();
+        this.toastLoading && this.stopLoading();
+        this.loading = false;
     },
-    message: {
-      type: String,
-      default: '',
+    data() {
+        return {
+            loading: true,
+            data: null
+        };
     },
-  },
-  async created() {
-    this.toastLoading ? this.startLoading() : ''
-    await this.sleep(2000)
-    this.data = await this.fetchData()
-    this.toastLoading ? this.stopLoading() : ''
-    this.loading = false
-  },
-  data() {
-    return {
-      loading: true,
-      data: null,
+    methods: {
+        fetchData() {
+            return post(this.url);
+        },
+        startLoading() {
+            Toast.loading({
+                message: this.message
+            });
+        },
+        stopLoading() {
+            Toast.clear();
+        }
+    },
+    render() {
+        return this.$scopedSlots.default({
+            loading: this.loading,
+            data: this.data
+        });
     }
-  },
-  methods: {
-    async fetchData() {
-      const data = await axios.get(this.url)
-      return data
-    },
-    sleep(duration) {
-      return new Promise((resolve, reject) => {
-        setTimeout(resolve, duration)
-      })
-    },
-    startLoading() {
-      Toast.loading({
-        message: this.message,
-      })
-    },
-    stopLoading() {
-      Toast.clear()
-    },
-  },
-  render() {
-    return this.$scopedSlots.default({
-      loading: this.loading,
-      data: this.data,
-    })
-  },
-}
+};

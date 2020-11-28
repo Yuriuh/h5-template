@@ -1,18 +1,19 @@
-import { Button, Swipe, SwipeItem, Tabs, Tab } from 'vant'
+import { Button, Tab, Tabs, Overlay, Toast } from 'vant'
 
 const registerVenderComponents = Vue => {
   Vue.use(Button)
-  Vue.use(Swipe)
-  Vue.use(SwipeItem)
   Vue.use(Tab)
   Vue.use(Tabs)
+  Vue.use(Overlay)
+  Vue.use(Toast)
 }
 
+// { tag: '', vue: someComponent }
 const customComponents = []
 
 const registerCustomComponents = (Vue, components) => {
   components.map(component => {
-    Vue.component(component.tag, component.vue)
+    return Vue.component(component.tag, component.vue)
   })
 }
 

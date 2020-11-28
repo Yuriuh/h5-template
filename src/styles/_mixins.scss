@@ -1,0 +1,20 @@
+// 截取单行文字
+@mixin truncateText {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// 截取多行文字 (容器需要有宽度)
+@mixin truncateMultipleText($line) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  overflow: hidden;
+}
+
+@mixin circle($diameter) {
+  width: $diameter;
+  height: $diameter;
+  border-radius: 50%;
+}
