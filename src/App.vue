@@ -15,12 +15,17 @@
 
 <script>
 import { routes } from './router'
+import { getMockData } from './services/mock'
 export default {
   data() {
     return {
       routes,
       active: '',
     }
+  },
+  async mounted() {
+    const res = await getMockData()
+    console.log('res', res)
   },
   watch: {
     '$route.path': {

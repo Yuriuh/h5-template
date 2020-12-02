@@ -12,6 +12,10 @@ registerPlugins(Vue)
 
 Vue.config.productionTip = false
 
+if (process.env.NODE_ENV === 'development') {
+  require('./mock')
+}
+
 new Vue({
   router,
   store,
