@@ -6,9 +6,11 @@ import 'amfe-flexible'
 import './styles/index.scss'
 import { registerComponents } from './utils/register-components'
 import { registerPlugins } from './utils/register-plugins'
+import { registerDirectives } from './utils/register-directives'
 
 registerComponents(Vue)
 registerPlugins(Vue)
+registerDirectives(Vue)
 
 Vue.config.productionTip = false
 
