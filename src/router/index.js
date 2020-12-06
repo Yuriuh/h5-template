@@ -5,6 +5,7 @@ import Component from '../views/Component.vue'
 import Scss from '../views/Scss.vue'
 import Plugins from '../views/Plugins.vue'
 import Vuex from '../views/Vuex.vue'
+import Directives from '../views/Directives.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ export const routes = [
     path: '/vuex',
     name: 'Vuex',
     component: Vuex,
+  },
+  {
+    path: '/directives',
+    name: 'Directives',
+    component: Directives,
   },
 ]
 
