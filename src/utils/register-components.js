@@ -1,4 +1,4 @@
-import { Button, Tab, Tabs, Overlay, Toast, List, PullRefresh, Cell } from 'vant'
+import { Button, Tab, Tabs, Overlay, Toast, List, PullRefresh, Cell, DatetimePicker, Popup } from 'vant'
 
 const registerVenderComponents = Vue => {
   Vue.use(Button)
@@ -9,6 +9,8 @@ const registerVenderComponents = Vue => {
   Vue.use(PullRefresh)
   Vue.use(Toast)
   Vue.use(Cell)
+  Vue.use(DatetimePicker)
+  Vue.use(Popup)
 }
 
 // { tag: '', vue: someComponent }

@@ -7,6 +7,7 @@ import Plugins from '../views/Plugins.vue'
 import Vuex from '../views/Vuex.vue'
 import Directives from '../views/Directives.vue'
 import ScrollList from '../views/ScrollList.vue'
+import Date from '../views/Date.vue'
 
 Vue.use(VueRouter)
 
@@ -45,6 +46,11 @@ export const routes = [
     path: '/scroll-list',
     name: 'ScrollList',
     component: ScrollList,
+  },
+  {
+    path: '/date',
+    name: 'Date',
+    component: Date,
   },
 ]
 
