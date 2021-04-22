@@ -46,6 +46,7 @@ export default {
 
 <style lang="scss">
 #app {
+  min-height: 100vh;
   font-size: 16px;
   background: #f7f8fa;
 }

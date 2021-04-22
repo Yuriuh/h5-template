@@ -8,7 +8,7 @@ import { sleep } from '../utils/sleep';
 export default {
     async mounted() {
         this.INCREASE_LOADING();
-        await sleep(5000);
+        await sleep(2000);
         this.DECREASE_LOADING();
     },
     methods: {
